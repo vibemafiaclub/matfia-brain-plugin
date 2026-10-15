@@ -1,0 +1,17 @@
+{
+  "name": "matfia-brain-plugin",
+  "owner": {
+    "name": "VIBE MAFIA CLUB",
+    "url": "https://www.vibemafiaclub.com"
+  },
+  "metadata": {
+    "description": "바이브마피아클럽 마피아 프리미엄 멤버십·VIBE PT 회원용 Claude Code 플러그인"
+  },
+  "plugins": [
+    {
+      "name": "matfia-brain",
+      "source": "./plugin",
+      "description": "최수민의 판단 원칙을 세션에 넣고, 상황에 맞는 에피소드 카드를 MCP로 찾아 쓴다"
+    }
+  ]
+}
