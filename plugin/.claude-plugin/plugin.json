@@ -5,6 +5,6 @@
   "description": "최수민(바이브마피아클럽)이 AI와 일하며 교정한 판단을 Claude Code 작업 중에 꺼내 쓰게 한다. 마피아 프리미엄 멤버십(오른팔·왼팔) 전용 — 지식은 서버에만 있다.",
   "author": { "name": "VIBE MAFIA CLUB", "url": "https://www.vibemafiaclub.com" },
   "homepage": "https://www.vibemafiaclub.com/membership",
-  "repository": "https://github.com/vibemafiaclub/vmc-right-hand",
+  "repository": "https://github.com/vibemafiaclub/matfia-brain-plugin",
   "keywords": ["vmc", "matfia-brain", "judgment"]
 }
