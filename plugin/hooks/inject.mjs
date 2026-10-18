@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // matfia-brain 훅: 세션 시작 때 서버에서 판단 원칙 요약을 받아 컨텍스트에 넣는다.
-// 이 파일에는 지식이 없다 — 내용은 매번 서버(오른팔 승인 상태 확인)에서 받는다.
+// 이 파일에는 지식이 없다 — 내용은 매번 서버(구독·이용권 자격 확인)에서 받는다.
 // 어떤 실패도 세션을 막지 않는다: 항상 exit 0.
 import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, rmSync, statSync, writeFileSync } from "node:fs";
@@ -55,7 +55,7 @@ try {
 
 if (res.status === 401) {
   clearCache();
-  done(null, "토큰이 유효하지 않거나 마피아 프리미엄 멤버십이 확인되지 않습니다. 마이페이지에서 상태를 확인하고 토큰을 다시 발급하세요.");
+  done(null, "토큰이 유효하지 않거나 matfia-brain 구독·이용권이 끝났습니다. 마이페이지에서 상태를 확인하고 토큰을 다시 발급하세요. 구독: https://www.vibemafiaclub.com/brain");
 }
 if (res.status === 429) done(null, "오늘 판단 원칙 호출 한도를 다 써서 이번 세션에는 넣지 않았습니다.");
 if (!res.ok) done(null, `서버 응답 오류(${res.status})로 이번 세션에는 판단 원칙 없이 진행합니다.`);
