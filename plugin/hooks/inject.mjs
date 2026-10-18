@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// matfia-brain 훅: 세션·서브에이전트 시작 때 서버에서 판단 원칙 요약을 받아 컨텍스트에 넣는다.
+// matfia-brain 훅: 세션 시작 때 서버에서 판단 원칙 요약을 받아 컨텍스트에 넣는다.
 // 이 파일에는 지식이 없다 — 내용은 매번 서버(오른팔 승인 상태 확인)에서 받는다.
 // 어떤 실패도 세션을 막지 않는다: 항상 exit 0.
 import { createHash } from "node:crypto";
@@ -9,8 +9,8 @@ import path from "node:path";
 
 const BASE = (process.env.MATFIA_BRAIN_URL || "https://www.vibemafiaclub.com").replace(/\/+$/, "");
 const TOKEN = process.env.MATFIA_BRAIN_TOKEN?.trim();
-// 서브에이전트가 여러 개 떠도 하루 호출 상한(get_principles 50회)을 다 쓰지 않게 잠깐 재사용한다. 401이면 바로 지운다
-const SUBAGENT_CACHE_MS = 60 * 60_000;
+// 세션을 자주 열어도 하루 호출 상한(get_principles 50회)을 다 쓰지 않게 1시간 재사용한다. 401이면 바로 지운다
+const CACHE_MS = 60 * 60_000;
 const TIMEOUT_MS = 5_000;
 
 let event = "SessionStart";
@@ -37,12 +37,10 @@ const cacheDir = process.env.CLAUDE_PLUGIN_DATA || path.join(tmpdir(), "matfia-b
 const cacheFile = path.join(cacheDir, `principles-${createHash("sha256").update(TOKEN).digest("hex").slice(0, 16)}.txt`);
 const clearCache = () => rmSync(cacheFile, { force: true });
 
-if (!isSession) {
-  try {
-    if (Date.now() - statSync(cacheFile).mtimeMs < SUBAGENT_CACHE_MS) done(readFileSync(cacheFile, "utf8"));
-  } catch {
-    // 캐시 없음 → 서버에서 받는다
-  }
+try {
+  if (Date.now() - statSync(cacheFile).mtimeMs < CACHE_MS) done(readFileSync(cacheFile, "utf8"));
+} catch {
+  // 캐시 없음 → 서버에서 받는다
 }
 
 let res;
