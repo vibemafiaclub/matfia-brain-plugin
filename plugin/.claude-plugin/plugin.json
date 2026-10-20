@@ -1,10 +1,10 @@
 {
   "name": "matfia-brain",
-  "displayName": "matfia-brain",
-  "version": "0.2.1",
-  "description": "최수민(바이브마피아클럽)이 AI와 일하며 교정한 판단을 Claude Code 작업 중에 꺼내 쓰게 한다. matfia-brain 구독·이용권 보유자용 — 지식은 서버에만 있다.",
+  "displayName": "마피아MCP",
+  "version": "0.2.2",
+  "description": "최수민(바이브마피아클럽)이 AI와 일하며 교정한 판단을 Claude Code 작업 중에 꺼내 쓰게 한다. 마피아MCP 구독·이용권 보유자용 — 지식은 서버에만 있다.",
   "author": { "name": "VIBE MAFIA CLUB", "url": "https://www.vibemafiaclub.com" },
   "homepage": "https://www.vibemafiaclub.com/brain",
   "repository": "https://github.com/vibemafiaclub/matfia-brain-plugin",
-  "keywords": ["vmc", "matfia-brain", "judgment"]
+  "keywords": ["vmc", "matfia-brain", "마피아MCP", "judgment"]
 }

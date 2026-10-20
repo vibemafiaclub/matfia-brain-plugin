@@ -26,7 +26,7 @@ function done(context, notice) {
   const out = {};
   if (context) out.hookSpecificOutput = { hookEventName: event, additionalContext: context };
   // 알림은 세션 시작 때만 사용자에게 한 줄로 보여준다(서브에이전트마다 반복하지 않는다)
-  if (notice && isSession) out.systemMessage = `matfia-brain: ${notice}`;
+  if (notice && isSession) out.systemMessage = `마피아MCP: ${notice}`;
   if (Object.keys(out).length) process.stdout.write(JSON.stringify(out));
   process.exit(0);
 }
@@ -55,7 +55,7 @@ try {
 
 if (res.status === 401) {
   clearCache();
-  done(null, "토큰이 유효하지 않거나 matfia-brain 구독·이용권이 끝났습니다. 마이페이지에서 상태를 확인하고 토큰을 다시 발급하세요. 구독: https://www.vibemafiaclub.com/brain");
+  done(null, "토큰이 유효하지 않거나 마피아MCP 구독·이용권이 끝났습니다. 마이페이지에서 상태를 확인하고 토큰을 다시 발급하세요. 구독: https://www.vibemafiaclub.com/brain");
 }
 if (res.status === 429) done(null, "오늘 판단 원칙 호출 한도를 다 써서 이번 세션에는 넣지 않았습니다.");
 if (!res.ok) done(null, `서버 응답 오류(${res.status})로 이번 세션에는 판단 원칙 없이 진행합니다.`);
