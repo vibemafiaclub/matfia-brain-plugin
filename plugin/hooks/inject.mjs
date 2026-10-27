@@ -22,11 +22,16 @@ try {
 }
 const isSession = event === "SessionStart";
 
+// 2026-10-27 플러그인 이름이 matfia로 바뀌었다(스킬 /matfia:plan 등 포함, 로그인 연결). 이 옛 플러그인은 계속 동작하지만 세션마다 옮기라고 알린다
+const MIGRATE =
+  "새 플러그인 matfia(스킬 /matfia:plan·design·review·teach 포함)로 옮겨 주세요 → claude plugin install matfia@matfia-brain-plugin 후 claude plugin uninstall matfia-brain, 다시 켜고 /mcp에서 로그인";
+
 function done(context, notice) {
   const out = {};
   if (context) out.hookSpecificOutput = { hookEventName: event, additionalContext: context };
   // 알림은 세션 시작 때만 사용자에게 한 줄로 보여준다(서브에이전트마다 반복하지 않는다)
-  if (notice && isSession) out.systemMessage = `마피아MCP: ${notice}`;
+  const message = [notice, MIGRATE].filter(Boolean).join(" / ");
+  if (isSession) out.systemMessage = `마피아MCP: ${message}`;
   if (Object.keys(out).length) process.stdout.write(JSON.stringify(out));
   process.exit(0);
 }

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "matfia-brain": {
+      "type": "http",
+      "url": "${MATFIA_BRAIN_URL:-https://www.vibemafiaclub.com}/api/brain/mcp"
+    }
+  }
+}

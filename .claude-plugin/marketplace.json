@@ -5,13 +5,18 @@
     "url": "https://www.vibemafiaclub.com"
   },
   "metadata": {
-    "description": "바이브마피아클럽 마피아MCP 구독·이용권 보유자용 Claude Code 플러그인"
+    "description": "바이브마피아클럽 마피아MCP + Skill팩 Claude Code 플러그인"
   },
   "plugins": [
     {
+      "name": "matfia",
+      "source": "./matfia",
+      "description": "마피아MCP + Skill팩 — 판단 카드 MCP(로그인 연결, 하루 10회 무료)와 /matfia:plan·design·review·teach 스킬"
+    },
+    {
       "name": "matfia-brain",
       "source": "./plugin",
-      "description": "최수민의 판단 원칙을 세션에 넣고, 상황에 맞는 에피소드 카드를 MCP로 찾아 쓴다"
+      "description": "(옛 플러그인 — matfia로 옮겨 주세요) 토큰 방식 마피아MCP"
     }
   ]
 }
